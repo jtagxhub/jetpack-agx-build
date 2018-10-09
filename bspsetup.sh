@@ -94,11 +94,22 @@ function l4tout_setup()
 
 	edo sudo rm -rf $L4TOUT
 
+	mkdir -p $DOANLOAD_ROOT
 	mkdir -p $TMP_ROOT
+	if [ ! -f $BSP_PACKAGE ] || [ $(wget_size $BSP_LINK) -ne $(local_size $BSP_PACKAGE) ]
+	then
+		echo; echo "download BSP package..."
+		edo wget $BSP_LINK -O $BSP_PACKAGE
+	fi
 	edo tar xpf $BSP_PACKAGE -C $TMP_ROOT
 	edo mv $TMP_ROOT/Linux_for_Tegra $L4TOUT
 	edo rm -rf $TMP_ROOT
 
+	if [ ! -f $ROOTFS_PACKAGE ] || [ $(wget_size $ROOTFS_LINK) -ne $(local_size $ROOTFS_PACKAGE) ]
+	then
+		echo; echo "download root file system package..."
+		edo wget $ROOTFS_LINK -O $ROOTFS_PACKAGE
+	fi
 	edo sudo tar xpf $ROOTFS_PACKAGE -C $TARGET_ROOTFS
 
 	pushd $L4TOUT &> /dev/null

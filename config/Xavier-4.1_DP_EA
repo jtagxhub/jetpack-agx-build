@@ -4,6 +4,8 @@
 KERNEL_TOOLCHAIN_LINK=https://developer.nvidia.com/embedded/dlc/kernel-gcc-6-4-tool-chain
 BSP_TOOLCHAIN_LINK=https://developer.nvidia.com/embedded/dlc/l4t-gcc-toolchain-64-bit-31-0-2
 SOURCES_LINK=https://developer.nvidia.com/embedded/dlc/l4t-sources-31-0-2
+BSP_LINK=https://developer.nvidia.com/embedded/dlc/l4t-jetson-xavier-driver-package-31-0-2
+ROOTFS_LINK=https://developer.nvidia.com/embedded/dlc/l4t-sample-root-filesystem-31-0-2
 MM_API_LINK=https://developer.nvidia.com/embedded/dlc/l4t-multimedia-api-31-0-2
 
 # Toolchain
