@@ -47,7 +47,7 @@ function kinstall()
 	echo; echo "kernel install..."
 	edo cp $KERNEL_OUT/arch/arm64/boot/Image $L4TOUT/kernel/
 	edo cp $KERNEL_OUT/arch/arm64/boot/dts/*.dtb $L4TOUT/kernel/dtb/
-	if [ "X-m" == "X$1" ]
+	if [ "X-a" == "X$1" ]
 	then
 		pushd $INSTALL_KERNEL_MODULES_PATH &> /dev/null
 		edo tar --owner root --group root -cjf kernel_supplements.tbz2 lib/modules
@@ -86,21 +86,24 @@ function kbuildmodule()
 
 	local MAKE_OPTIONS="ARCH=arm64 CROSS_COMPILE=$KERNEL_TOOLCHAIN O=$KERNEL_OUT -j${NUMCPUS} V=0"
 
-	echo ; echo; echo "start modules build..."
-	edo make -C $KERNEL_PATH $MAKE_OPTIONS modules DESTDIR=$INSTALL_KERNEL_MODULES_PATH
-	edo make -C $KERNEL_PATH $MAKE_OPTIONS modules_install INSTALL_MOD_PATH=$INSTALL_KERNEL_MODULES_PATH
+	if [ "X-a" == "X$1" ]
+	then
+		echo ; echo; echo "start modules build..."
+		edo make -C $KERNEL_PATH $MAKE_OPTIONS modules DESTDIR=$INSTALL_KERNEL_MODULES_PATH
+		edo make -C $KERNEL_PATH $MAKE_OPTIONS modules_install INSTALL_MOD_PATH=$INSTALL_KERNEL_MODULES_PATH
+	fi
 }
 
 function kbuild()
 {
-	local KINSTALL_ARG
+	local KBUILD_ARG
 
-	while getopts 'm' OPT; do
+	while getopts 'a' OPT; do
 		case $OPT in
-			m)
-				KINSTALL_ARG="-m";;
+			a)
+				KBUILD_ARG="-a";;
 			?)
-				echo "Usage: kbuild [-m]"
+				echo "Usage: kbuild [-a]"
 		esac
 	done
 
@@ -108,7 +111,7 @@ function kbuild()
 
 	[ -f $KERNEL_OUT/.config ] || kdefconfig
 
-	kbuildimage && kbuilddtb && kbuildmodule && kinstall $KINSTALL_ARG
+	kbuildimage && kbuilddtb && kbuildmodule $KBUILD_ARG && kinstall $KBUILD_ARG
 
 	echo "Done"; echo
 }
@@ -117,4 +120,4 @@ echo -e "${red}kmenuconfig${normal}: \t\tkernel menuconfig"
 echo -e "${red}kdefconfig${normal}: \t\tkernel defconfig"
 echo -e "${red}ksavedefconfig${normal}: \tupdate kernel defconfig"
 echo -e "${red}kbuild${normal}: \t\tbuild and install kernel image, dtb"
-echo -e "${red}kbuild -m${normal}: \t\tbuild and install kernel image, dtb, module"
+echo -e "${red}kbuild -a${normal}: \t\tbuild and install kernel image, dtb, module"
