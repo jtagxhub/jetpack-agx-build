@@ -65,18 +65,18 @@ function _sources_setup()
 		edo tar xpf $SOURCE_PACKAGE -C $DOANLOAD_ROOT
 	fi
 
-	edo git init $SOURCE_ROOT
+	edo git init $KERNEL_ROOT
 
 	# kernel source
 	if [ ! -d  $KERNEL_PATH ]
 	then
 		echo; echo "Setup kernel source code..."
-		edo tar xpf $KERNEL_PACKAGE -C $SOURCE_ROOT
+		edo tar xpf $KERNEL_PACKAGE -C $KERNEL_ROOT
 	fi
 
-	pushd $SOURCE_ROOT &> /dev/null
+	pushd $KERNEL_ROOT &> /dev/null
 	edo git add .
-	edo git commit -m "First_commit"
+	edo git commit -s -m "${TARGET_DEV}-${TARGET_RELEASE}"
 	popd &> /dev/null
 }
 
@@ -131,7 +131,7 @@ function bspsetup()
 	## Toolochain
 	mkdir -p $KERNEL_TOOLCHAIN_ROOT
 	mkdir -p $BSP_TOOLCHAIN_ROOT
-	mkdir -p $SOURCE_ROOT
+	mkdir -p $KERNEL_ROOT
 
 	_toolchain_setup && _sources_setup
 
