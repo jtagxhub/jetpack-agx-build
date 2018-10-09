@@ -255,7 +255,7 @@ DOANLOAD_ROOT=$TOP/jetpack_download
 
 # SOURCE
 SOURCE_PACKAGE=$DOANLOAD_ROOT/sources.tbz2
-SOURCE_UNPACK=$DOANLOAD_ROOT/public_release
+SOURCE_UNPACK=$DOANLOAD_ROOT/public_sources
 SOURCE_ROOT=$TOP/sources
 
 OUT=$TOP/out
