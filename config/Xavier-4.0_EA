@@ -1,0 +1,47 @@
+# JetPack 4.0-EA
+
+## Download Links
+KERNEL_TOOLCHAIN_LINK=https://developer.nvidia.com/embedded/dlc/kernel-gcc-6-4-tool-chain
+BSP_TOOLCHAIN_LINK=https://developer.nvidia.com/embedded/dlc/l4t-gcc-toolchain-64-bit-31-0-1
+SOURCES_LINK=https://developer.nvidia.com/embedded/dlc/l4t-sources-31-0-1
+MM_API_LINK=https://developer.nvidia.com/embedded/dlc/l4t-multimedia-api-31-0-1
+
+# Toolchain
+KERNEL_TOOLCHAIN=$KERNEL_TOOLCHAIN_ROOT/gcc-linaro-6.4.1-2017.08-x86_64_aarch64-linux-gnu/bin/aarch64-linux-gnu-
+BSP_TOOLCHAIN=$BSP_TOOLCHAIN_ROOT/install/bin/aarch64-unknown-linux-gnu-
+
+
+# DOWNLOAD
+KERNEL_TOOLCHAIN_PACKAGE=$DOANLOAD_ROOT/gcc-linaro-6.4-2017.08.tar.xz
+BSP_TOOLCHAIN_PACKAGE=$DOANLOAD_ROOT/gcc-4.8.5-aarch64.tgz
+BSP_PACKAGE=$DOANLOAD_ROOT/Jetson_Linux_R31.0.1_aarch64.tbz2
+ROOTFS_PACKAGE=$DOANLOAD_ROOT/Tegra_Linux_Sample-Root-Filesystem_R31.0.1_aarch64.tbz2
+MM_API_PACKAGE=$DOANLOAD_ROOT/Tegra_Multimedia_API_R31.0.1_aarch64.tbz2
+
+# Kernel
+KERNEL_VERSION=4.9
+TARGET_KERNEL_CONFIG=tegra_defconfig
+
+# OUT
+OUT_ROOT=$TOP/Xavier
+
+# debs
+TARGET_CUDA_DEB=$DOANLOAD_ROOT/cuda-repo-l4t-10-0-local-10.0.117_1.0-1_arm64.deb
+TARGET_OPENCV_DEB=$DOANLOAD_ROOT/libopencv_3.3.1_arm64.deb
+TARGET_OPENCV_DEV_DEB=$DOANLOAD_ROOT/libopencv-dev_3.3.1_arm64.deb
+TARGET_OPENCV_PYTHON_DEB=$DOANLOAD_ROOT/libopencv-python_3.3.1_arm64.deb
+TARGET_OPENCV_SAMPLES_DEB=$DOANLOAD_ROOT/libopencv-samples_3.3.1_arm64.deb
+TARGET_CUDNN_DEB=$DOANLOAD_ROOT/libcudnn7_7.3.0.21-1+cuda10.0_arm64.deb
+TARGET_CUDNN_DEV_DEB=$DOANLOAD_ROOT/libcudnn7-dev_7.3.0.21-1+cuda10.0_arm64.deb
+TARGET_CUDNN_DOC_DEB=$DOANLOAD_ROOT/libcudnn7-doc_7.3.0.21-1+cuda10.0_arm64.deb
+TARGET_NVINFER_DEB=$DOANLOAD_ROOT/libnvinfer5_5.0.0-1+cuda10.0_arm64.deb
+TARGET_NVINFER_DEV_DEB=$DOANLOAD_ROOT/libnvinfer-dev_5.0.0-1+cuda10.0_arm64.deb
+TARGET_NVINFER_SAMPLES_DEB=$DOANLOAD_ROOT/libnvinfer-samples_5.0.0-1+cuda10.0_arm64.deb
+TARGET_TENSORRT_DEB=$DOANLOAD_ROOT/tensorrt_5.0.0.8-1+cuda10.0_arm64.deb
+TARGET_GIE_DEV_DEB=$DOANLOAD_ROOT/libgie-dev_5.0.0-1+cuda10.0_arm64.deb
+TARGET_VISIONWORKS_DEB=$DOANLOAD_ROOT/libvisionworks-repo_1.6.0.500n_arm64.deb
+TARGET_VISIONWORKS_SFM_DEB=$DOANLOAD_ROOT/libvisionworks-sfm-repo_0.90.3_arm64.deb
+TARGET_VISIONWORKS_TRACKING_DEB=$DOANLOAD_ROOT/libvisionworks-tracking-repo_0.88.2_arm64.deb
+TARGET_CUDA_APT=cuda-toolkit-10-0
+TARGET_CUDA_INSTALL_SAMPLE_SCRIPT=/usr/local/cuda/bin/cuda-install-samples-10.0.sh
+TARGET_VISIONWORKS_INSTALL_SAMPLE_SCRIPT=/usr/share/visionworks/sources/install-samples.sh
