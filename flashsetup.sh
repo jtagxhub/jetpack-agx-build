@@ -44,6 +44,6 @@ function flash_kernel()
 	flash -k kernel
 }
 
-echo "${red}flash${normal}:    flash image with options"
-echo "${red}flash_no_rootfs${normal}:    flash all except rootfs"
-echo "${red}flash_kernel${normal}:    Update kernel Image"
+echo -e "${red}flash${normal}: \t\t\tflash image with options"
+echo -e "${red}flash_no_rootfs${normal}: \tflash all except rootfs"
+echo -e "${red}flash_kernel${normal}: \t\tUpdate kernel Image"

@@ -309,7 +309,7 @@ function local_size()
 }
 
 echo "C O M M A N D S:"
-echo "${red}rm_pwd${normal}: auth ssh connection without password"
+echo -e "${red}rm_pwd${normal}: \t\tauth ssh connection without password"
 source $TOP/build/bspsetup.sh
 source $TOP/build/kernelbuild.sh
 source $TOP/build/flashsetup.sh

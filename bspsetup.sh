@@ -140,5 +140,5 @@ function bspsetup()
 	echo "${mag}BSP setup successfully!${normal}"; echo
 }
 
-echo "${red}bspsetup${normal}: setup toolchain, kernel source"
-echo "${red}l4tout_setup${normal}: setup Xavier/Linux_for_Tegra"
+echo -e "${red}bspsetup${normal}: \t\tsetup toolchain, kernel source"
+echo -e "${red}l4tout_setup${normal}: \t\tsetup Xavier/Linux_for_Tegra"

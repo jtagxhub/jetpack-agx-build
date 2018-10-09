@@ -113,8 +113,8 @@ function kbuild()
 	echo "Done"; echo
 }
 
-echo "${red}kmenuconfig${normal}:    kernel menuconfig"
-echo "${red}kdefconfig${normal}:    kernel defconfig"
-echo "${red}ksavedefconfig${normal}:    update kernel defconfig"
-echo "${red}kbuild${normal}:    build and install kernel image, dtb"
-echo "${red}kbuild -m${normal}:    build and install kernel image, dtb, module"
+echo -e "${red}kmenuconfig${normal}: \t\tkernel menuconfig"
+echo -e "${red}kdefconfig${normal}: \t\tkernel defconfig"
+echo -e "${red}ksavedefconfig${normal}: \tupdate kernel defconfig"
+echo -e "${red}kbuild${normal}: \t\tbuild and install kernel image, dtb"
+echo -e "${red}kbuild -m${normal}: \t\tbuild and install kernel image, dtb, module"
