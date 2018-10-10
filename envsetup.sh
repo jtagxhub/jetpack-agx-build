@@ -205,7 +205,7 @@ DEFAULT_TARGET_RELEASE=${TARGET_RELEASE_ARRAY[0]}
 choose_release
 set_target_user
 set_target_pwd
-#set_target_ip
+set_target_ip
 echo
 echo "${TARGET_DEV_ARRAY[@]}" | grep -w "$TARGET_DEV" 2>&1 >/dev/null || (echo "invalid target device" && return 1)
 echo "${TARGET_RELEASE_ARRAY[@]}" | grep -w "$TARGET_RELEASE" 2>&1 >/dev/null || (echo "invalid target release" && return 1)
@@ -216,7 +216,7 @@ echo "TARGET_DEV                : $TARGET_DEV"
 echo "TARGET_RELEASE            : $TARGET_RELEASE"
 echo "Target device login user     : $TARGET_USER"
 echo "Target device login password : $TARGET_PWD"
-#echo "Target device IP             : $TARGET_IP"
+echo "Target device IP             : $TARGET_IP"
 echo
 echo -n "${yel}Are these right? [n/y] "
 read ANSWER
@@ -240,10 +240,6 @@ echo "TARGET_RELEASE=$TARGET_RELEASE" >>$TOP/build/.config
 echo "TARGET_USER=$TARGET_USER" >>$TOP/build/.config
 echo "TARGET_PWD=$TARGET_PWD" >>$TOP/build/.config
 echo "TARGET_IP=$TARGET_IP" >>$TOP/build/.config
-
-## setup ssh authorized connection
-#setup_ssh_auth
-
 
 # Toolchain
 TOOLCHAIN_ROOT=$TOP/prebuilts/gcc
