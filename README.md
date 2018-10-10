@@ -18,18 +18,12 @@ Introduction
 
     2. The relevant files for this scripts and their layout.
 
-       Note: In below layout, 64_TX1, jetpack_download are downloaded by Jetpack.
-       And, sources.tbz2 under jetpack_download, kernel, u-boot, prebuilts are
-       setup by command "bspsetp".
-
-
        $TOP
         ├── build                  --> This Build Assistant Scripts
         │   ├── bspsetup.sh
         │   ├── config
         │   ├── envsetup.sh
         │   ├── flashsetup.sh
-        │   ├── install.sh
         │   ├── kernelbuild.sh
         │   ├── README.md
         ├── jetpack_download
