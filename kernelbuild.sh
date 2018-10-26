@@ -53,6 +53,10 @@ function kinstall()
 		edo tar --owner root --group root -cjf kernel_supplements.tbz2 lib/modules
 		popd &> /dev/null
 		edo mv $INSTALL_KERNEL_MODULES_PATH/kernel_supplements.tbz2 $L4TOUT/kernel/
+		pushd $L4TOUT/rootfs/ &> /dev/null
+		edo sudo rm -rf $L4TOUT/rootfs/lib/modules/*
+		edo sudo tar jxpfm "${L4TOUT}/kernel/kernel_supplements.tbz2"
+		popd &> /dev/null
 	fi
 	echo "Done"; echo
 }
@@ -88,7 +92,8 @@ function kbuildmodule()
 
 	if [ "X-a" == "X$1" ]
 	then
-		echo ; echo; echo "start modules build..."
+		KERNEL_VERSION=`make -s -C $KERNEL_PATH $MAKE_OPTIONS kernelversion`
+		echo ; echo; echo "start modules build (kernel version: ${KERNEL_VERSION})..."
 		edo make -C $KERNEL_PATH $MAKE_OPTIONS modules DESTDIR=$INSTALL_KERNEL_MODULES_PATH
 		edo make -C $KERNEL_PATH $MAKE_OPTIONS modules_install INSTALL_MOD_PATH=$INSTALL_KERNEL_MODULES_PATH
 	fi
@@ -96,22 +101,11 @@ function kbuildmodule()
 
 function kbuild()
 {
-	local KBUILD_ARG
-
-	while getopts 'a' OPT; do
-		case $OPT in
-			a)
-				KBUILD_ARG="-a";;
-			?)
-				echo "Usage: kbuild [-a]"
-		esac
-	done
-
 	_kernel_prepare_dirs
 
 	[ -f $KERNEL_OUT/.config ] || kdefconfig
 
-	kbuildimage && kbuilddtb && kbuildmodule $KBUILD_ARG && kinstall $KBUILD_ARG
+	kbuildimage && kbuilddtb && kbuildmodule $1 && kinstall $1
 
 	echo "Done"; echo
 }
