@@ -39,6 +39,11 @@ function flash_no_rootfs()
 	edo mv -f $FLASH_CONFIG_SAVE $FLASH_CONFIG
 }
 
+function flash_cboot()
+{
+	flash -k cpu-bootloader
+}
+
 function flash_kernel()
 {
 	flash -k kernel
@@ -46,4 +51,5 @@ function flash_kernel()
 
 echo -e "${red}flash${normal}: \t\t\tflash image with options"
 echo -e "${red}flash_no_rootfs${normal}: \tflash all except rootfs"
-echo -e "${red}flash_kernel${normal}: \t\tUpdate kernel Image"
+echo -e "${red}flash_cboot${normal}: \t\tflash cboot Image"
+echo -e "${red}flash_kernel${normal}: \t\tflash kernel Image"

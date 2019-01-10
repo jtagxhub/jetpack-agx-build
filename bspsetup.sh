@@ -65,19 +65,44 @@ function _sources_setup()
 		edo tar xpf $SOURCE_PACKAGE -C $DOANLOAD_ROOT
 	fi
 
-	edo git init $KERNEL_ROOT
-
 	# kernel source
-	if [ ! -d  $KERNEL_PATH ]
+	if [ -z "$(ls -A $KERNEL_ROOT)" ]
 	then
 		echo; echo "Setup kernel source code..."
+		edo git init $KERNEL_ROOT
 		edo tar xpf $KERNEL_PACKAGE -C $KERNEL_ROOT
+		pushd $KERNEL_ROOT &> /dev/null
+		edo git add .
+		edo git commit -s -m "${TARGET_DEV}-${TARGET_RELEASE}"
+		popd &> /dev/null
 	fi
 
-	pushd $KERNEL_ROOT &> /dev/null
-	edo git add .
-	edo git commit -s -m "${TARGET_DEV}-${TARGET_RELEASE}"
-	popd &> /dev/null
+
+	if [ ! -f $CBOOT_PACKAGE ]
+	then
+		echo; echo "${yel}************************************************************"
+		echo "If you need cboot, please download cboot source code from"
+		echo "$CBOOT_SOURCE_LINK"
+		echo "move to below place and rerun bspsetup."
+		dirname $CBOOT_PACKAGE
+		echo "************************************************************${normal}"
+		echo
+		return 0
+		edo wget $CBOOT_SOURCE_LINK -O $CBOOT_PACKAGE
+	else
+		if [ -z "$(ls -A $CBOOT_ROOT)" ]
+		then
+			edo git init $CBOOT_ROOT
+			echo; echo "Setup cboot source code..."
+			edo tar xpf $CBOOT_PACKAGE -C $CBOOT_ROOT
+			pushd $CBOOT_ROOT &> /dev/null
+			edo git add .
+			edo git commit -s -m "${TARGET_DEV}-${TARGET_RELEASE}"
+			popd &> /dev/null
+		fi
+	fi
+
+
 }
 
 function l4tout_setup()
@@ -132,6 +157,7 @@ function bspsetup()
 	mkdir -p $KERNEL_TOOLCHAIN_ROOT
 	mkdir -p $BSP_TOOLCHAIN_ROOT
 	mkdir -p $KERNEL_ROOT
+	mkdir -p $CBOOT_ROOT
 
 	_toolchain_setup && _sources_setup
 

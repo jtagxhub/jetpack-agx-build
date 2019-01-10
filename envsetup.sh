@@ -262,6 +262,11 @@ KERNEL_ROOT=$SOURCE_ROOT/kernel
 KERNEL_OUT=$OUT/KERNEL
 INSTALL_KERNEL_MODULES_PATH=$OUT/MODULES
 
+# C-boot
+CBOOT_PACKAGE=$DOANLOAD_ROOT/cboot_src_t194.tbz2
+CBOOT_ROOT=$SOURCE_ROOT/cboot
+CBOOT_OUT=$OUT/CBOOT
+
 # Tmp
 TMP_ROOT=$TOP/.tmp
 
@@ -308,6 +313,7 @@ function local_size()
 echo "C O M M A N D S:"
 echo -e "${red}rm_pwd${normal}: \t\tauth ssh connection without password"
 source $TOP/build/bspsetup.sh
+source $TOP/build/cbootbuild.sh
 source $TOP/build/kernelbuild.sh
 source $TOP/build/flashsetup.sh
 echo
