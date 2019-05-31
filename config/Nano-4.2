@@ -3,11 +3,11 @@
 ## Download Links
 KERNEL_TOOLCHAIN_LINK=http://releases.linaro.org/components/toolchain/binaries/7.3-2018.05/aarch64-linux-gnu/gcc-linaro-7.3.1-2018.05-x86_64_aarch64-linux-gnu.tar.xz
 BSP_TOOLCHAIN_LINK=https://developer.nvidia.com/embedded/dlc/l4t-gcc-toolchain-64-bit-32-1
-SOURCES_LINK=https://developer.nvidia.com/embedded/dlc/l4t-sources-32-1-JAX-TX2
+SOURCES_LINK=https://developer.nvidia.com/embedded/dlc/l4t-sources-32-1-jetson-nano
 # CBOOT_SOURCE_LINK=https://developer.nvidia.com/embedded/dlc/cboot-source-r311
-BSP_LINK=https://developer.nvidia.com/embedded/dlc/l4t-jetson-driver-package-32-1-JAX-TX2
-ROOTFS_LINK=https://developer.nvidia.com/embedded/dlc/l4t-sample-root-filesystem-32-1-JAX-TX2
-MM_API_LINK=https://developer.nvidia.com/embedded/dlc/l4t-multimedia-api-32-1-JAX-TX2
+BSP_LINK=https://developer.nvidia.com/embedded/dlc/l4t-jetson-driver-package-32-1-jetson-nano
+ROOTFS_LINK=https://developer.nvidia.com/embedded/dlc/l4t-sample-root-filesystem-32-1-jetson-nano
+MM_API_LINK=https://developer.nvidia.com/embedded/dlc/l4t-multimedia-api-32-1-jetson-nano
 
 # Toolchain
 KERNEL_TOOLCHAIN=$KERNEL_TOOLCHAIN_ROOT/gcc-linaro-7.3.1-2018.05-x86_64_aarch64-linux-gnu/bin/aarch64-linux-gnu-
@@ -17,13 +17,13 @@ BSP_TOOLCHAIN=$BSP_TOOLCHAIN_ROOT/install/bin/aarch64-unknown-linux-gnu-
 # DOWNLOAD
 KERNEL_TOOLCHAIN_PACKAGE=$DOANLOAD_ROOT/gcc-linaro-7.3.1-2018.05-x86_64_aarch64-linux-gnu.tar.xz
 BSP_TOOLCHAIN_PACKAGE=$DOANLOAD_ROOT/gcc-4.8.5-aarch64.tgz
-BSP_PACKAGE=$DOANLOAD_ROOT/JAX-TX2-Jetson_Linux_R32.1.0_aarch64.tbz2
-ROOTFS_PACKAGE=$DOANLOAD_ROOT/JAX-TX2-Tegra_Linux_Sample-Root-Filesystem_R32.1.0_aarch64.tbz2
-MM_API_PACKAGE=$DOANLOAD_ROOT/JAX-TX2-Tegra_Multimedia_API_R32.1.0_aarch64.tbz2
+BSP_PACKAGE=$DOANLOAD_ROOT/Jetson-Nano-Tegra210_Linux_R32.1.0_aarch64.tbz2
+ROOTFS_PACKAGE=$DOANLOAD_ROOT/Jetson-Nano-Tegra_Linux_Sample-Root-Filesystem_R32.1.0_aarch64.tbz2
+MM_API_PACKAGE=$DOANLOAD_ROOT/Jetson-Nano-Tegra_Multimedia_API_R32.1.0_aarch64
 
 # Kernel
 KERNEL_VERSION=4.9
 TARGET_KERNEL_CONFIG=tegra_defconfig
 
 # OUT
-OUT_ROOT=$TOP/Xavier
+OUT_ROOT=$TOP/Nano

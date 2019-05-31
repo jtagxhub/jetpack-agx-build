@@ -157,6 +157,26 @@ function set_target_ip()
 	done
 }
 
+function is_nano()
+{
+	[ "Xjetson-nano" == "X${TARGET_DEV,,}" ]
+}
+
+function is_tx1()
+{
+	[ "Xjetson-tx1" == "X${TARGET_DEV,,}" ]
+}
+
+function is_tx2()
+{
+	[ "Xjetson-tx2" == "X${TARGET_DEV,,}" ]
+}
+
+function is_xavier()
+{
+	[ "Xjetson-xavier" == "X${TARGET_DEV,,}" ]
+}
+
 function _getnumcpus()
 {
 	NUMCPUS=2
@@ -281,7 +301,12 @@ TARGET_ROOTFS=$L4TOUT/rootfs/
 KERNEL_PATH=$KERNEL_ROOT/kernel/kernel-${KERNEL_VERSION}
 MM_API_SDK_PATH=$OUT_ROOT/tegra_multimedia_api
 
-TARGET_DEV_CONF=$L4TOUT/${TARGET_DEV,,}.conf
+if is_nano
+then
+	TARGET_DEV_CONF=$L4TOUT/${TARGET_DEV,,}-qspi-sd.conf
+else
+	TARGET_DEV_CONF=$L4TOUT/${TARGET_DEV,,}.conf
+fi
 
 # This function can only get one line configure
 function get_setting_from_conf()
