@@ -30,7 +30,6 @@ Introduction
         │   ├── Jetson_Linux_XXXX_aarch64.tbz2
         │   ├── sources.tbz2
         │   └── Tegra_Linux_Sample-Root-Filesystem_XXXX_aarch64.tbz2
-        ├── JetPack-L4T-xxx-linux-x64_yyy.run
         ├── out                    --> kernel build output, images will be copied into Linux_for_Tegra for flash
         │   ├── KERNEL
         │   └── MODULES
@@ -39,7 +38,7 @@ Introduction
         │       ├── bsp            --> toolchain for bsp build
         │       └── kernel         --> toolchain for kernel build
         ├── sources                --> source code
-        └── Xavier                 --> All images are put under this for flash
+        └── [Xavier | Nano | 64_TX2]                 --> All images are put under this for flash
             └── Linux_for_Tegra
                 ├── apply_binaries.sh
                 ├── bootloader
@@ -70,9 +69,11 @@ Introduction
        3.8 $ flash
              > flash images with passing options to flash.sh
        3.9 $ flash_no_rootfs
-             > flash all images excpet rootfs/APP partition
+             > flash all images excpet rootfs/APP partition, valid for Xavier and TX2
        3.10 $ flash_kernel
-             > flash kernel partition
+             > flash kernel partition, valid for Xavier
+       3.11 $ update_kernel
+             > update kernel on device by scp, valid for Nano and TX2
 
     4. How to use normally
        4.1 Initial setup
