@@ -22,7 +22,7 @@ function flash()
 
 function flash_no_rootfs()
 {
-	if ! use_tegraflash_v2
+	if ! is_xavier && ! is_tx2
 	then
 		return
 	fi
