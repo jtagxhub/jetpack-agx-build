@@ -3,7 +3,7 @@ Jetson AGX Xavier Build Assistant Scripts
 
 Background
 ----------
-  After you download lots of files through JetPack-L4T-xxx-linux-x64-yyy.run, you
+  After you download lots of files through JetPack-L4T-xxx-linux-x64-yyy.run or sdkmanager, you
 still need to download toolchains, kernel source code and other stuffs to setup
 the development environment on your Linux Host PC, in addition, you need also
 collect some handy commands to build the code, flash the images, etc.
@@ -59,7 +59,7 @@ Introduction
              > re-setup "Xavier --> Linux_for_Tegra"
        3.4 $ kbuild
              > build kernel source code, output to $TOP/out/KERNEL, $TOP/out/MODULES
-             > Copy the generated Image and dtbto $OUT/kernel. If "-m" specified, modules will also be copied
+             > Copy the generated Image and dtbto $OUT/kernel. If "-a" specified, modules will also be copied
        3.5 $ kdefconfig
              > generate .config from defconfig (make xxx_defconfig)
        3.6 $ kmenuconfig
