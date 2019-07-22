@@ -13,10 +13,89 @@ function remote_sudo()
 	edo sshpass -p $TARGET_PWD ssh -t -l $TARGET_USER $TARGET_IP "echo ${TARGET_PWD} | sudo -S -s /bin/bash -c \"$@\""
 }
 
+function choose_target_conf()
+{
+	if [ ! -z "$TARGET_CONF" ]
+	then
+		return 0
+	fi
+
+	for f in `ls $L4TOUT/${TARGET_DEV,,}*.conf`
+	do
+		f=`basename $f`
+		if [[ ! " ${TARGET_CONF_ARRAY[@]} " =~ " ${f} " ]]; then
+			TARGET_CONF_ARRAY+=(${f})
+		fi
+	done
+
+	DEFAULT_TARGET_CONF=${TARGET_CONF_ARRAY[0]}
+
+	local index=0
+	local v
+	for v in ${TARGET_CONF_ARRAY[@]}
+	do
+		echo "     $index. $v"
+		index=$(($index+1))
+	done
+
+	local ANSWER
+	while [ -z "$TARGET_CONF" ]
+	do
+		echo -n "Which config would you choose? [$DEFAULT_TARGET_CONF] "
+		read ANSWER
+
+		if [ -z "$ANSWER" ] ; then
+			export TARGET_CONF=$DEFAULT_TARGET_CONF
+		else
+			if [ $ANSWER -lt ${#TARGET_CONF_ARRAY[@]} ]
+			then
+				export TARGET_CONF=${TARGET_CONF_ARRAY[$ANSWER]}
+			else
+				echo "** Not a valid config option: $ANSWER"
+			fi
+		fi
+	done
+	echo
+	echo "${yel}Please confirm below configuration:${normal}"
+	echo "${grn}"
+	echo "Target device config             : $TARGET_CONF"
+	echo
+	echo -n "${yel}Is it right? [n/y] "
+	read ANSWER
+	if [ "$ANSWER"x = "n"x ]
+	then
+		export TARGET_CONF=
+		echo "please re-configure with your command"
+		echo "${normal}"
+		return 1
+	fi
+	echo "${normal}"
+	return 0
+}
+
+# This function can only get one line configure
+function get_setting_from_conf()
+{
+	local KEY=$1
+	local GREP_FILE=$TARGET_CONF
+	local VALUE
+
+	if ! grep -q -E "^\s*$KEY\s*=\S+" $TARGET_CONF
+	then
+		GREP_FILE=`dirname $TARGET_CONF`/`grep -E -o "^\s*\bsource\b\s+[^;]+" $TARGET_CONF  | awk '{print $2}' | xargs basename`
+	fi
+
+	VALUE=`grep -E -o "^\s*$KEY\s*=\S+" $GREP_FILE | cut -d "=" -f 2`
+	VALUE=`echo $VALUE | tr -d "'\";"`
+	echo $VALUE
+}
+
 function flash()
 {
+	choose_target_conf || return 1
+
 	pushd ${L4TOUT} &> /dev/null
-	edo sudo ./flash.sh  $@ `basename ${TARGET_DEV_CONF::-5}` mmcblk0p1;
+	edo sudo ./flash.sh  $@ `basename ${TARGET_CONF::-5}` mmcblk0p1;
 	popd &> /dev/null
 }
 
@@ -26,6 +105,9 @@ function flash_no_rootfs()
 	then
 		return
 	fi
+
+	choose_target_conf || return 1
+
 	local TARGET_BOARD=$(get_setting_from_conf target_board)
 	local FLASH_CONFIG_PATH=$L4TOUT/bootloader/$TARGET_BOARD/cfg
 	local FLASH_CONFIG_NAME=$(get_setting_from_conf EMMC_CFG)

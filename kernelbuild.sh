@@ -18,7 +18,7 @@ function kmenuconfig()
 {
 	_kernel_prepare_dirs
 
-	local MAKE_OPTIONS="ARCH=arm64 CROSS_COMPILE=$KERNEL_TOOLCHAIN O=$KERNEL_OUT"
+	local MAKE_OPTIONS="ARCH=arm64 CROSS_COMPILE=$KERNEL_TOOLCHAIN O=$KERNEL_OUT LOCALVERSION=-tegra"
 
 	edo make -C $KERNEL_PATH $MAKE_OPTIONS menuconfig
 }
@@ -27,14 +27,14 @@ function kdefconfig()
 {
 	_kernel_prepare_dirs
 
-	local MAKE_OPTIONS="ARCH=arm64 CROSS_COMPILE=$KERNEL_TOOLCHAIN O=$KERNEL_OUT"
+	local MAKE_OPTIONS="ARCH=arm64 CROSS_COMPILE=$KERNEL_TOOLCHAIN O=$KERNEL_OUT LOCALVERSION=-tegra"
 
 	edo make -C $KERNEL_PATH $MAKE_OPTIONS $TARGET_KERNEL_CONFIG
 }
 
 function ksavedefconfig()
 {
-	local MAKE_OPTIONS="ARCH=arm64 CROSS_COMPILE=$KERNEL_TOOLCHAIN O=$KERNEL_OUT"
+	local MAKE_OPTIONS="ARCH=arm64 CROSS_COMPILE=$KERNEL_TOOLCHAIN O=$KERNEL_OUT LOCALVERSION=-tegra"
 
 	edo make -C $KERNEL_PATH $MAKE_OPTIONS savedefconfig
 	edo cp $KERNEL_OUT/defconfig $KERNEL_PATH/arch/arm64/configs/$TARGET_KERNEL_CONFIG
@@ -66,7 +66,7 @@ function kbuildimage()
 	_kernel_prepare_dirs
 	_getnumcpus
 
-	local MAKE_OPTIONS="ARCH=arm64 CROSS_COMPILE=$KERNEL_TOOLCHAIN O=$KERNEL_OUT -j${NUMCPUS} V=0"
+	local MAKE_OPTIONS="ARCH=arm64 CROSS_COMPILE=$KERNEL_TOOLCHAIN O=$KERNEL_OUT LOCALVERSION=-tegra -j${NUMCPUS} V=0"
 
 	echo; echo "start Image build..."
 	edo make -C $KERNEL_PATH $MAKE_OPTIONS Image
@@ -77,7 +77,7 @@ function kbuilddtb()
 	_kernel_prepare_dirs
 	_getnumcpus
 
-	local MAKE_OPTIONS="ARCH=arm64 CROSS_COMPILE=$KERNEL_TOOLCHAIN O=$KERNEL_OUT -j${NUMCPUS} V=0"
+	local MAKE_OPTIONS="ARCH=arm64 CROSS_COMPILE=$KERNEL_TOOLCHAIN O=$KERNEL_OUT LOCALVERSION=-tegra -j${NUMCPUS} V=0"
 
 	echo; echo "start dtbs build..."
 	edo make -C $KERNEL_PATH $MAKE_OPTIONS dtbs
@@ -88,7 +88,7 @@ function kbuildmodule()
 	_kernel_prepare_dirs
 	_getnumcpus
 
-	local MAKE_OPTIONS="ARCH=arm64 CROSS_COMPILE=$KERNEL_TOOLCHAIN O=$KERNEL_OUT -j${NUMCPUS} V=0"
+	local MAKE_OPTIONS="ARCH=arm64 CROSS_COMPILE=$KERNEL_TOOLCHAIN O=$KERNEL_OUT LOCALVERSION=-tegra -j${NUMCPUS} V=0"
 
 	if [ "X-a" == "X$1" ]
 	then

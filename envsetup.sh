@@ -197,7 +197,7 @@ function rm_pwd()
          rm ~/.ssh/tmp_authorized_keys" > /dev/null
 }
 
-for f in `ls $CONFIG_DIR`
+for f in `find $CONFIG_DIR -maxdepth 1 -type f`
 do
 	f=`basename $f`
 	arr=(${f//-/ })
@@ -301,29 +301,6 @@ TARGET_ROOTFS=$L4TOUT/rootfs/
 KERNEL_PATH=$KERNEL_ROOT/kernel/kernel-${KERNEL_VERSION}
 MM_API_SDK_PATH=$OUT_ROOT/tegra_multimedia_api
 
-if is_nano
-then
-	TARGET_DEV_CONF=$L4TOUT/${TARGET_DEV,,}-qspi-sd.conf
-else
-	TARGET_DEV_CONF=$L4TOUT/${TARGET_DEV,,}.conf
-fi
-
-# This function can only get one line configure
-function get_setting_from_conf()
-{
-	local KEY=$1
-	local GREP_FILE=$TARGET_DEV_CONF
-	local VALUE
-
-	if ! grep -q -E "^\s*$KEY\s*=\S+" $TARGET_DEV_CONF
-	then
-		GREP_FILE=`dirname $TARGET_DEV_CONF`/`grep -E -o "^\s*\bsource\b\s+[^;]+" $TARGET_DEV_CONF  | awk '{print $2}' | xargs basename`
-	fi
-
-	VALUE=`grep -E -o "^\s*$KEY\s*=\S+" $GREP_FILE | cut -d "=" -f 2`
-	VALUE=`echo $VALUE | tr -d "'\";"`
-	echo $VALUE
-}
 
 function wget_size()
 {

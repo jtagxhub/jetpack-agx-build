@@ -38,7 +38,7 @@ Introduction
         │       ├── bsp            --> toolchain for bsp build
         │       └── kernel         --> toolchain for kernel build
         ├── sources                --> source code
-        └── [Xavier | Nano | 64_TX2]                 --> All images are put under this for flash
+        └── [Xavier|Nano|64_TX2|64_TX1]     --> All images are put under this for flash
             └── Linux_for_Tegra
                 ├── apply_binaries.sh
                 ├── bootloader
@@ -52,14 +52,14 @@ Introduction
              > This command must be executed under the TOP folder downloaded by Jetpack
              > This command is to setup some basic env variables, some configurable
              > variables will be saved into $TOP/build/.config
-       3.2 $ bspsetup
+       3.2 $ l4tout_setup
+             > re-setup "Linux_for_Tegra"
+       3.3 $ bspsetup
              > download and setup the toolchains
              > download and setup kernel source code with git repo
-       3.3 $ l4tout_setup
-             > re-setup "Xavier --> Linux_for_Tegra"
        3.4 $ kbuild
              > build kernel source code, output to $TOP/out/KERNEL, $TOP/out/MODULES
-             > Copy the generated Image and dtbto $OUT/kernel. If "-a" specified, modules will also be copied
+             > Copy the generated Image and dtbs to $OUT/kernel. If "-a" specified, modules will also be copied
        3.5 $ kdefconfig
              > generate .config from defconfig (make xxx_defconfig)
        3.6 $ kmenuconfig
@@ -73,12 +73,13 @@ Introduction
        3.10 $ flash_kernel
              > flash kernel partition, valid for Xavier
        3.11 $ update_kernel
-             > update kernel on device by scp, valid for Nano and TX2
+             > update kernel on device by scp, valid for Nano, TX1 and TX2
 
     4. How to use normally
        4.1 Initial setup
             After download files with Jetpack, run below commands to setup others:
                 $ . build/envsetup.sh
+                $ l4tout_setup
                 $ bspsetup
        4.2 Normally use
                 $ . build/envsetup.sh    --> this need to be run in any new shell
