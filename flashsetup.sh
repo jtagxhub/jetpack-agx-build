@@ -77,12 +77,12 @@ function choose_target_conf()
 function get_setting_from_conf()
 {
 	local KEY=$1
-	local GREP_FILE=$TARGET_CONF
+	local GREP_FILE=$L4TOUT/$TARGET_CONF
 	local VALUE
 
-	if ! grep -q -E "^\s*$KEY\s*=\S+" $TARGET_CONF
+	if ! grep -q -E "^\s*$KEY\s*=\S+" $GREP_FILE
 	then
-		GREP_FILE=`dirname $TARGET_CONF`/`grep -E -o "^\s*\bsource\b\s+[^;]+" $TARGET_CONF  | awk '{print $2}' | xargs basename`
+		GREP_FILE=`dirname $GREP_FILE`/`grep -E -o "^\s*\bsource\b\s+[^;]+" $GREP_FILE  | awk '{print $2}' | xargs basename`
 	fi
 
 	VALUE=`grep -E -o "^\s*$KEY\s*=\S+" $GREP_FILE | cut -d "=" -f 2`
