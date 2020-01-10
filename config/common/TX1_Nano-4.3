@@ -21,3 +21,8 @@ ROOTFS_PACKAGE=$DOANLOAD_ROOT/Tegra_Linux_Sample-Root-Filesystem_R32.3.1_aarch64
 # Kernel
 KERNEL_VERSION=4.9
 TARGET_KERNEL_CONFIG=tegra_defconfig
+
+# Override
+SOURCE_UNPACK=$DOANLOAD_ROOT/Linux_for_Tegra/source/public
+KERNEL_PACKAGE=$SOURCE_UNPACK/kernel_src.tbz2
+CBOOT_PACKAGE=$SOURCE_UNPACK/cboot_src.tbz2
