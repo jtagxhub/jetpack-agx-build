@@ -101,7 +101,7 @@ function flash()
 
 function flash_no_rootfs()
 {
-	if ! is_xavier && ! is_tx2
+	if ! is_xavier && ! is_tx2 && ! is_nx
 	then
 		return
 	fi
@@ -131,7 +131,7 @@ function flash_no_rootfs()
 
 function flash_cboot()
 {
-	if is_xavier
+	if is_xavier || is_nx
 	then
 		flash -k cpu-bootloader
 	else
@@ -171,11 +171,11 @@ function update_kernel()
 }
 
 echo -e "${red}flash${normal}: \t\t\tflash image with options"
-if is_xavier || is_tx2
+if is_xavier || is_tx2 || is_nx
 then
 	echo -e "${red}flash_no_rootfs${normal}: \tflash all except rootfs"
 fi
-if is_xavier
+if is_xavier || is_nx
 then
 	echo -e "${red}flash_cboot${normal}: \t\tflash cboot Image"
 	echo -e "${red}flash_kernel${normal}: \t\tflash kernel Image"
