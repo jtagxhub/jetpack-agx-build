@@ -179,7 +179,6 @@ function is_xavier()
 
 function is_nx()
 {
-	echo "X${TARGET_DEV,,}"
 	[ "Xjetson-xavier-nx" == "X${TARGET_DEV,,}" ]
 }
 
