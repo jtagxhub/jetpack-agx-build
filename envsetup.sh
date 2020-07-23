@@ -177,6 +177,11 @@ function is_xavier()
 	[ "Xjetson-xavier" == "X${TARGET_DEV,,}" ]
 }
 
+function is_nx()
+{
+	[ "Xjetson-xavier-nx" == "X${TARGET_DEV,,}" ]
+}
+
 function _getnumcpus()
 {
 	NUMCPUS=2
@@ -200,7 +205,7 @@ function rm_pwd()
 for f in `find $CONFIG_DIR -maxdepth 1 -type f`
 do
 	f=`basename $f`
-	arr=(${f//-/ })
+	arr=(${f%-*}) #(${f//-/ })
 	if [[ ! " ${TARGET_DEV_ARRAY[@]} " =~ " Jetson-${arr[0]} " ]]; then
 		TARGET_DEV_ARRAY+=(Jetson-${arr[0]})
 	fi
@@ -214,9 +219,9 @@ choose_target
 for f in `ls $CONFIG_DIR/${TARGET_DEV:7}-*`
 do
 	f=`basename $f`
-	arr=(${f//-/ })
-	if [[ ! " ${TARGET_RELEASE_ARRAY[@]} " =~ " ${arr[1]} " ]]; then
-		TARGET_RELEASE_ARRAY+=(${arr[1]})
+	arr=(${f##*-}) #(${f//-/ })
+	if [[ ! " ${TARGET_RELEASE_ARRAY[@]} " =~ " ${arr[0]} " ]]; then
+		TARGET_RELEASE_ARRAY+=(${arr[0]})
 	fi
 done
 

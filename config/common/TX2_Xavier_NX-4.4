@@ -1,0 +1,30 @@
+# JetPack 4.4
+
+## Download Links
+KERNEL_TOOLCHAIN_LINK=https://developer.nvidia.com/embedded/dlc/l4t-gcc-7-3-1-toolchain-64-bit
+BSP_TOOLCHAIN_LINK=$KERNEL_TOOLCHAIN_LINK
+SOURCES_LINK=https://developer.nvidia.com/embedded/L4T/r32_Release_v4.3/Sources/T186/public_sources.tbz2
+BSP_LINK=https://developer.nvidia.com/embedded/L4T/r32_Release_v4.3/t186ref_release_aarch64/Tegra186_Linux_R32.4.3_aarch64.tbz2
+ROOTFS_LINK=https://developer.nvidia.com/embedded/L4T/r32_Release_v4.3/t186ref_release_aarch64/Tegra_Linux_Sample-Root-Filesystem_R32.4.3_aarch64.tbz2
+CBOOT_SOURCE_LINK=https://developer.nvidia.com/embedded/dlc/cboot-source-r311
+#CBOOT_SOURCE_LINK=https://developer.download.nvidia.com/embedded/L4T/r31_Release_v1.0/cboot_src_t194.tbz2
+
+# Toolchain
+KERNEL_TOOLCHAIN=$KERNEL_TOOLCHAIN_ROOT/gcc-linaro-7.3.1-2018.05-x86_64_aarch64-linux-gnu/bin/aarch64-linux-gnu-
+BSP_TOOLCHAIN=$KERNEL_TOOLCHAIN
+BSP_TOOLCHAIN_ROOT=$KERNEL_TOOLCHAIN_ROOT
+
+# DOWNLOAD
+KERNEL_TOOLCHAIN_PACKAGE=$DOANLOAD_ROOT/gcc-linaro-7.3.1-2018.05-x86_64_aarch64-linux-gnu.tar.xz
+BSP_TOOLCHAIN_PACKAGE=$KERNEL_TOOLCHAIN_PACKAGE
+BSP_PACKAGE=$DOANLOAD_ROOT/Tegra186_Linux_R32.4.3_aarch64.tbz2
+ROOTFS_PACKAGE=$DOANLOAD_ROOT/Tegra_Linux_Sample-Root-Filesystem_R32.4.3_aarch64.tbz2
+
+# Kernel
+KERNEL_VERSION=4.9
+TARGET_KERNEL_CONFIG=tegra_defconfig
+
+# Override
+SOURCE_UNPACK=$DOANLOAD_ROOT/Linux_for_Tegra/source/public
+KERNEL_PACKAGE=$SOURCE_UNPACK/kernel_src.tbz2
+CBOOT_PACKAGE=$SOURCE_UNPACK/cboot_src_t19x.tbz2
