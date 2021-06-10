@@ -55,6 +55,7 @@ function _sources_setup()
 	# Source download
 	if [ ! -f $SOURCE_PACKAGE ] || [ $(wget_size $SOURCES_LINK) -ne $(local_size $SOURCE_PACKAGE) ]
 	then
+		edo mkdir -p $DOANLOAD_ROOT
 		echo; echo "download source code..."
 		edo wget $SOURCES_LINK -O $SOURCE_PACKAGE
 	fi
@@ -63,6 +64,7 @@ function _sources_setup()
 	then
 		echo; echo "Unpack source..."
 		edo tar xpf $SOURCE_PACKAGE -C $DOANLOAD_ROOT
+		
 	fi
 
 	# kernel source
@@ -77,6 +79,7 @@ function _sources_setup()
 		popd &> /dev/null
 	fi
 
+	edo rm -rf $DOANLOAD_ROOT
 
 	if [ ! -f $CBOOT_PACKAGE ]
 	then
@@ -159,7 +162,8 @@ function bspsetup()
 	mkdir -p $KERNEL_ROOT
 	mkdir -p $CBOOT_ROOT
 
-	_toolchain_setup && _sources_setup
+	#_toolchain_setup && _sources_setup
+	_sources_setup
 
 	_later_check || (echo "${red}_later_check failed, BSP setup failed!${normal}" && return 1)
 

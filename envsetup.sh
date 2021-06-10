@@ -145,10 +145,11 @@ function set_target_ip()
 	local ANSWER
 	while [ -z "$TARGET_IP" ]
 	do
-		echo -n "IP address of target device? "
+		echo -n "IP address of target device? [Default = 192.168.55.1]"
 		read ANSWER
 
 		if [ -z "$ANSWER" ] ; then
+			export TARGET_IP=192.168.55.1
 			break;
 		else
 			export TARGET_IP=$ANSWER
@@ -262,7 +263,7 @@ echo "TARGET_PWD=$TARGET_PWD" >>$TOP/build/.config
 echo "TARGET_IP=$TARGET_IP" >>$TOP/build/.config
 
 # Toolchain
-TOOLCHAIN_ROOT=$TOP/prebuilts/gcc
+TOOLCHAIN_ROOT=/opt/prebuilts/gcc
 KERNEL_TOOLCHAIN_ROOT=$TOOLCHAIN_ROOT/kernel
 BSP_TOOLCHAIN_ROOT=$TOOLCHAIN_ROOT/bsp
 

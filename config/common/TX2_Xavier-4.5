@@ -1,0 +1,28 @@
+# JetPack 4.3
+
+## Download Links
+KERNEL_TOOLCHAIN_LINK=https://developer.nvidia.com/embedded/dlc/l4t-gcc-7-3-1-toolchain-64-bit
+BSP_TOOLCHAIN_LINK=$KERNEL_TOOLCHAIN_LINK
+ROOTFS_LINK=
+BSP_LINK=
+SOURCES_LINK=https://developer.nvidia.com/embedded/L4T/r32_Release_v5.0/sources/T186/public_sources.tbz2
+
+# Toolchain
+KERNEL_TOOLCHAIN=$KERNEL_TOOLCHAIN_ROOT/gcc-linaro-7.3.1-2018.05-x86_64_aarch64-linux-gnu/bin/aarch64-linux-gnu-
+BSP_TOOLCHAIN=$KERNEL_TOOLCHAIN
+BSP_TOOLCHAIN_ROOT=$KERNEL_TOOLCHAIN_ROOT
+
+# DOWNLOAD
+KERNEL_TOOLCHAIN_PACKAGE=$DOANLOAD_ROOT/gcc-linaro-7.3.1-2018.05-x86_64_aarch64-linux-gnu.tar.xz
+BSP_TOOLCHAIN_PACKAGE=$KERNEL_TOOLCHAIN_PACKAGE
+BSP_PACKAGE=Jetson_Linux_R32.5.0_aarch64.tbz2
+ROOTFS_PACKAGE=Tegra_Linux_Sample-Root-Filesystem_R32.5.0_aarch64.tbz2
+
+# Kernel
+KERNEL_VERSION=4.9
+TARGET_KERNEL_CONFIG=tegra_defconfig
+
+# Override
+SOURCE_UNPACK=$DOANLOAD_ROOT/Linux_for_Tegra/source/public
+KERNEL_PACKAGE=$SOURCE_UNPACK/kernel_src.tbz2
+CBOOT_PACKAGE=$SOURCE_UNPACK/cboot_src_t19x.tbz2

@@ -1,0 +1,6 @@
+# JetPack 4.4GA
+
+source $CONFIG_DIR/common/TX2_Xavier-4.4GA
+
+# OUT
+OUT_ROOT=$TOP/JetPack_4.4_Linux_JETSON_AGX_XAVIER/

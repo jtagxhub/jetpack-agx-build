@@ -1,0 +1,6 @@
+# JetPack 4.3
+
+source $CONFIG_DIR/common/TX1_Nano-4.4_DP
+
+# OUT
+OUT_ROOT=$TOP/JetPack_4.4_DP_Linux_DP_JETSON_NANO

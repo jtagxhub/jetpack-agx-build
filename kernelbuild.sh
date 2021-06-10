@@ -69,7 +69,7 @@ function kbuildimage()
 	local MAKE_OPTIONS="ARCH=arm64 CROSS_COMPILE=$KERNEL_TOOLCHAIN O=$KERNEL_OUT LOCALVERSION=-tegra -j${NUMCPUS} V=0"
 
 	echo; echo "start Image build..."
-	edo make -C $KERNEL_PATH $MAKE_OPTIONS Image
+	edo make -C $KERNEL_PATH $MAKE_OPTIONS
 }
 
 function kbuilddtb()

@@ -168,6 +168,11 @@ function update_kernel()
 	else
 		echo "Image update failed"
 	fi
+
+    if [ x"$1" = x"-r" ]; then
+        echo "Reboot device!"
+        remote_sudo "sync; nohup sudo -b bash -c 'sleep 1; reboot'"
+    fi
 }
 
 echo -e "${red}flash${normal}: \t\t\tflash image with options"
@@ -175,10 +180,10 @@ if is_xavier || is_tx2
 then
 	echo -e "${red}flash_no_rootfs${normal}: \tflash all except rootfs"
 fi
-if is_xavier
-then
-	echo -e "${red}flash_cboot${normal}: \t\tflash cboot Image"
-	echo -e "${red}flash_kernel${normal}: \t\tflash kernel Image"
-else
-	echo -e "${red}update_kernel${normal}: \t\tupdate kernel Image"
-fi
+#if is_xavier
+#then
+echo -e "${red}flash_cboot${normal}: \t\tflash cboot Image"
+echo -e "${red}flash_kernel${normal}: \t\tflash kernel Image"
+#else
+echo -e "${red}update_kernel${normal}: \t\tupdate kernel Image"
+#fi
