@@ -83,15 +83,20 @@ function _sources_setup()
 
 	if [ ! -f $CBOOT_PACKAGE ]
 	then
-		echo; echo "${yel}************************************************************"
-		echo "If you need cboot, please download cboot source code from"
-		echo "$CBOOT_SOURCE_LINK"
-		echo "move to below place and rerun bspsetup."
-		dirname $CBOOT_PACKAGE
-		echo "************************************************************${normal}"
-		echo
-		return 0
+		edo mkdir -p $SOURCE_UNPACK
 		edo wget $CBOOT_SOURCE_LINK -O $CBOOT_PACKAGE
+		if [ $? -eq 0 ]; then
+			echo; echo "download cboot source code: success\n"
+		else
+			echo; echo "${yel}************************************************************"
+			echo "If you need cboot, please download cboot source code from"
+			echo "$CBOOT_SOURCE_LINK"
+			echo "move to below place and rerun bspsetup."
+			dirname $CBOOT_PACKAGE
+			echo "************************************************************${normal}"
+			echo
+			return 0
+		fi
 	else
 		if [ -z "$(ls -A $CBOOT_ROOT)" ]
 		then
